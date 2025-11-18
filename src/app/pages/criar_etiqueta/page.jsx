@@ -42,22 +42,37 @@ export default function CriarEtiqueta() {
   };
 
   return (
-    <div>
-      <h1>Criar Etiqueta</h1>
-      {/* Campos para entrada dos dados */}
-      <form action="#" onSubmit={handleSubmit}>
-        <section id="remetente" className="m-2">
-          <h2 className="text-xl font-semibold mb-4">Remetente</h2>
+    <div className="max-w-5xl mx-auto p-6 md:p-10 grid gap-10">
+      {/* Header */}
+      <header className="grid gap-2">
+        <h1 className="text-3xl font-bold text-slate-800">Criar Etiqueta</h1>
+        <p className="text-sm text-slate-500">Preencha os dados de remetente e destinatário para gerar a etiqueta.</p>
+      </header>
+
+      <form onSubmit={handleSubmit} className="grid gap-8">
+        {/* Remetente */}
+        <section id="remetente" className="bg-white rounded-2xl shadow-subtle p-6 md:p-8 grid gap-4">
+          <h2 className="text-lg font-semibold text-slate-700 border-b border-slate-100 pb-3">Remetente</h2>
           <FormularioEnvio prefix="remetente_" />
         </section>
-        <section id="destinatario" className="m-2">
-          <h2 className="text-xl font-semibold mb-4">Destinatário</h2>
+
+        {/* Destinatário */}
+        <section id="destinatario" className="bg-white rounded-2xl shadow-subtle p-6 md:p-8 grid gap-4">
+          <h2 className="text-lg font-semibold text-slate-700 border-b border-slate-100 pb-3">Destinatário</h2>
           <FormularioEnvio prefix="destinatario_" />
         </section>
 
-        <button type="submit" className="m-2 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-200">
-          Gerar Etiqueta
-        </button>
+        {/* Submit */}
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            className="px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold
+                   hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                   transition transform hover:scale-[1.02] active:scale-[0.98]"
+          >
+            Gerar Etiqueta
+          </button>
+        </div>
       </form>
     </div>
   );

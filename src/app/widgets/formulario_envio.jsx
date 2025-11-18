@@ -64,167 +64,148 @@ export default function FormularioEnvio({ prefix = "" }) {
     };
 
     return (
-        <div className="max-w-2xl mx-auto p-8 bg-white rounded-xl shadow-lg space-y-6">
-            {/* cep Field - Own Line */}
-            <div className="mb-8">
-                <label
-                    htmlFor={`${prefix}cep`}
-                    className="block text-lg font-bold text-blue-700 mb-2"
-                >
-                    cep:
+        <div
+            className="max-w-3xl mx-auto p-6 md:p-10 bg-white rounded-2xl shadow-subtle grid gap-6"
+            style={{ boxShadow: '0 8px 30px rgba(0,0,0,.05)' }}
+        >
+            {/* CEP */}
+            <div className="grid gap-2">
+                <label htmlFor={`${prefix}cep`} className="text-sm font-semibold text-slate-700">
+                    CEP
                 </label>
                 <input
-                    type="text"
                     id={`${prefix}cep`}
                     name={`${prefix}cep`}
+                    type="text"
                     required
                     autoFocus
                     inputMode="numeric"
                     maxLength={9}
                     placeholder="00000-000"
-                    aria-describedby={`${prefix}cep-help`}
                     onChange={handleCepChange}
-                    className="w-full px-4 py-3 border-2 border-blue-600 rounded-lg text-lg font-semibold bg-blue-50 focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200"
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 text-slate-900
+                     placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 />
-                <p id={`${prefix}cep-help`} className="mt-2 text-sm text-blue-600">
-                    Informe o cep (somente números ou no formato 00000-000)
-                </p>
+                <span className="text-xs text-slate-500">Somente números ou formato 00000-000</span>
             </div>
 
-            {/* Nome/Empresa Field - Full Width */}
-            <div className="mb-6">
-                <label
-                    htmlFor={`${prefix}nome`}
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                >
-                    Nome / Empresa / Promoção:
+            {/* Nome / Empresa */}
+            <div className="grid gap-2">
+                <label htmlFor={`${prefix}nome`} className="text-sm font-semibold text-slate-700">
+                    Nome / Empresa / Promoção
                 </label>
                 <input
-                    type="text"
                     id={`${prefix}nome`}
                     name={`${prefix}nome`}
+                    type="text"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 text-slate-900
+                     placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 />
             </div>
 
-            {/* Endereço and Número */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="md:col-span-2">
-                    <label
-                        htmlFor={`${prefix}logradouro`}
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        Endereço:
+            {/* Endereço + Número */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="md:col-span-2 grid gap-2">
+                    <label htmlFor={`${prefix}logradouro`} className="text-sm font-semibold text-slate-700">
+                        Endereço
                     </label>
                     <input
-                        type="text"
                         id={`${prefix}logradouro`}
                         name={`${prefix}logradouro`}
+                        type="text"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                        className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 text-slate-900
+                       placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                     />
                 </div>
-                <div>
-                    <label
-                        htmlFor={`${prefix}numero`}
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        Número:
+                <div className="grid gap-2">
+                    <label htmlFor={`${prefix}numero`} className="text-sm font-semibold text-slate-700">
+                        Número
                     </label>
                     <input
-                        type="number"
                         id={`${prefix}numero`}
                         name={`${prefix}numero`}
+                        type="text"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                        className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 text-slate-900
+                       placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                     />
                 </div>
             </div>
 
-            {/* Complemento and Bairro */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div>
-                    <label
-                        htmlFor={`${prefix}complemento`}
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        Complemento:
+            {/* Complemento + Bairro */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid gap-2">
+                    <label htmlFor={`${prefix}complemento`} className="text-sm font-semibold text-slate-700">
+                        Complemento
                     </label>
                     <input
-                        type="text"
                         id={`${prefix}complemento`}
                         name={`${prefix}complemento`}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                        type="text"
+                        className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 text-slate-900
+                       placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                     />
                 </div>
-                <div>
-                    <label
-                        htmlFor={`${prefix}bairro`}
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        Bairro:
+                <div className="grid gap-2">
+                    <label htmlFor={`${prefix}bairro`} className="text-sm font-semibold text-slate-700">
+                        Bairro
                     </label>
                     <input
-                        type="text"
                         id={`${prefix}bairro`}
                         name={`${prefix}bairro`}
+                        type="text"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                        className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 text-slate-900
+                       placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                     />
                 </div>
             </div>
 
-            {/* Cidade and UF */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="md:col-span-2">
-                    <label
-                        htmlFor={`${prefix}cidade`}
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        Cidade:
+            {/* Cidade + UF */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="md:col-span-2 grid gap-2">
+                    <label htmlFor={`${prefix}cidade`} className="text-sm font-semibold text-slate-700">
+                        Cidade
                     </label>
                     <input
-                        type="text"
                         id={`${prefix}cidade`}
                         name={`${prefix}cidade`}
+                        type="text"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                        className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 text-slate-900
+                       placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                     />
                 </div>
-                <div>
-                    <label
-                        htmlFor={`${prefix}uf`}
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        UF:
+                <div className="grid gap-2">
+                    <label htmlFor={`${prefix}uf`} className="text-sm font-semibold text-slate-700">
+                        UF
                     </label>
                     <input
-                        type="text"
                         id={`${prefix}uf`}
                         name={`${prefix}uf`}
+                        type="text"
                         required
                         maxLength={2}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 uppercase"
+                        className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 text-slate-900 uppercase
+                       placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                     />
                 </div>
             </div>
 
             {/* Observações */}
-            <div className="mb-6">
-                <div>
-                    <label
-                        htmlFor={`${prefix}observacoes`}
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        Observações:
-                    </label>
-                    <textarea
-                        id={`${prefix}observacoes`}
-                        name={`${prefix}observacoes`}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    />
-                </div>
+            <div className="grid gap-2">
+                <label htmlFor={`${prefix}observacoes`} className="text-sm font-semibold text-slate-700">
+                    Observações
+                </label>
+                <textarea
+                    id={`${prefix}observacoes`}
+                    name={`${prefix}observacoes`}
+                    rows={3}
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 text-slate-900
+                     placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition resize-none"
+                />
             </div>
         </div>
     );
