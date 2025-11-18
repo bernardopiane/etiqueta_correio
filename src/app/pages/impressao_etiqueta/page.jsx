@@ -45,13 +45,21 @@ export default function ImpressaoEtiqueta() {
         <>
             <style jsx global>{`
                 @media print {
-                    body { margin: 0; padding: 0; }
+                    body { 
+                        margin: 0 !important; 
+                        padding: 0 !important;
+                    }
                     .no-print { display: none !important; }
                     .label-box {
-                        page-break-inside: avoid;
                         border: 2px solid #000 !important;
-                        padding: 12mm !important;
+                        padding: 6mm !important;
                         margin-bottom: 8mm !important;
+                        width: 45%;
+                        max-width: 45%;
+                        box-sizing: border-box;
+                        overflow: hidden;
+                        word-wrap: break-word;
+                        word-break: break-word;
                     }
                     .label-title { 
                         font-size: 14pt !important;
@@ -64,6 +72,10 @@ export default function ImpressaoEtiqueta() {
                     .label-address { 
                         font-size: 11pt !important;
                         line-height: 1.4 !important;
+                        white-space: pre-wrap !important;
+                        word-wrap: break-word !important;
+                        overflow-wrap: break-word !important;
+                        word-break: break-word !important;
                     }
                     .label-obs {
                         font-size: 9pt !important;
