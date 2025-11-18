@@ -1,4 +1,4 @@
-import CriarEtiqueta from "../app/pages/criar_etiqueta";
+import CriarEtiqueta from "./pages/criar_etiqueta/page";
 
 export default function Home() {
   return (
