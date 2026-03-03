@@ -146,12 +146,28 @@ export default function Home() {
     setMostrarAR(false);
   };
 
+  const imprimirViaIframe = (html: string) => {
+    const iframe = document.createElement("iframe");
+    iframe.style.cssText = "position:fixed;top:-9999px;left:-9999px;width:0;height:0;border:none;";
+    document.body.appendChild(iframe);
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) return;
+    doc.open();
+    doc.write(html);
+    doc.close();
+    // Aguarda o iframe carregar antes de imprimir
+    iframe.onload = () => {
+      iframe.contentWindow?.focus();
+      iframe.contentWindow?.print();
+      // Remove o iframe após a impressão
+      setTimeout(() => document.body.removeChild(iframe), 1000);
+    };
+  };
+
   const handleImprimirEtiqueta = () => {
     const conteudo = etiquetaRef.current?.innerHTML;
     if (!conteudo) return;
-    const janela = window.open("", "_blank", "width=600,height=400");
-    if (!janela) return;
-    janela.document.write(`
+    imprimirViaIframe(`
       <!DOCTYPE html>
       <html lang="pt-BR">
       <head>
@@ -165,21 +181,15 @@ export default function Home() {
           }
         </style>
       </head>
-      <body>${conteudo}
-      <script>window.onload = () => { window.print(); window.close(); }<\/script>
-      </body>
+      <body>${conteudo}</body>
       </html>
     `);
-    janela.document.close();
-    janela.focus();
-    setTimeout(() => { janela.print(); janela.close(); }, 500);
   };
 
   const handleImprimirTudo = () => {
-    // Garante que o AR esteja renderizado para capturar o conteúdo
     if (!mostrarAR) {
       setMostrarAR(true);
-      setTimeout(() => imprimirEtiquetaEAr(), 100);
+      setTimeout(() => imprimirEtiquetaEAr(), 150);
     } else {
       imprimirEtiquetaEAr();
     }
@@ -189,9 +199,7 @@ export default function Home() {
     const etiqueta = etiquetaRef.current?.innerHTML;
     const ar = arRef.current?.innerHTML;
     if (!etiqueta || !ar) return;
-    const janela = window.open("", "_blank", "width=700,height=600");
-    if (!janela) return;
-    janela.document.write(`
+    imprimirViaIframe(`
       <!DOCTYPE html>
       <html lang="pt-BR">
       <head>
@@ -200,7 +208,7 @@ export default function Home() {
         <style>
           * { box-sizing: border-box; margin: 0; padding: 0; }
           body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 16px; gap: 32px; }
-          .divisor { width: 100%; border: none; border-top: 2px dashed #999; margin: 8px 0; }
+          hr.divisor { width: 100%; border: none; border-top: 2px dashed #999; margin: 8px 0; }
           @media print {
             body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           }
@@ -210,13 +218,9 @@ export default function Home() {
         <div>${etiqueta}</div>
         <hr class="divisor" />
         <div>${ar}</div>
-        <script>window.onload = () => { window.print(); window.close(); }<\/script>
       </body>
       </html>
     `);
-    janela.document.close();
-    janela.focus();
-    setTimeout(() => { janela.print(); janela.close(); }, 500);
   };
 
   const cepFormatado = (cep: string) =>
